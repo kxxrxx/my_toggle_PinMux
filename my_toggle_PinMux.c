@@ -1,3 +1,8 @@
+//*****************************************************************************
+// in this example, we change the blinking LED from Red to Green. Also 
+// slowed down the blinking by a factor of 5
+//*****************************************************************************
+
 #include <stdint.h>
 #include <stdbool.h>
 #include "toggle_PinMux.h"
@@ -8,14 +13,8 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/gpio.h"
 
-#define 	GREEN_MASK 		0x08
+#define GREEN_MASK 0x08
 
-//*****************************************************************************
-//
-//!
-//! A very simple example that toggles the on-board green LED using PinMux for 
-//! port initialization and functions in Peripheral Driver Library for port access
-//
 //*****************************************************************************
 void
 PortFunctionInit(void)
@@ -26,11 +25,21 @@ PortFunctionInit(void)
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     //
-    // Enable pin PF1 for GPIOOutput
+    // Enable pin PF3 for GPIOOutput
     //
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3);
-}
 
+    //
+    //First open the lock and select the bits we want to modify in the GPIO commit register.
+    //
+    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
+    HWREG(GPIO_PORTF_BASE + GPIO_O_CR) = 0x1;
+
+    //
+    //Now modify the configuration of the pins that we unlocked.
+    //
+    GPIOPinTypeGPIOInput(GPIO_PORTF_BASE, GPIO_PIN_0);
+}
 int main(void)
 {
     uint8_t LED_data;
@@ -38,8 +47,8 @@ int main(void)
 		//initialize the GPIO ports	
 		PortFunctionInit();
 	
-    // Turn on the green LED.
-    LED_data= GREEN_MASK;
+    // Turn on the LED.
+    LED_data= 0x08;
 		GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, LED_data);
     
     //
@@ -48,7 +57,9 @@ int main(void)
     while(1)
     {
         // Delay for a bit.
-				SysCtlDelay(2000000);	
+				SysCtlDelay(10000000);
+				SysCtlDelay(10000000);
+				SysCtlDelay(10000000);
 
         // Toggle the LED.
         LED_data^=GREEN_MASK;	//toggle green LED (PF3)
