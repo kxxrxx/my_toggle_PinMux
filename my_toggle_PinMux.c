@@ -60,6 +60,8 @@ int main(void)
 				SysCtlDelay(10000000);
 				SysCtlDelay(10000000);
 				SysCtlDelay(10000000);
+	    			SysCtlDelay(10000000);
+	    			SysCtlDelay(10000000);
 
         // Toggle the green LED.
         LED_data^=GREEN_MASK;	//toggle green LED (PF3)
