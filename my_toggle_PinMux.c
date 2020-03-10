@@ -48,7 +48,7 @@ int main(void)
 		PortFunctionInit();
 	
     // Turn on the LED.
-    LED_data= 0x08;
+    LED_data= GREEN_MASK;
 		GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, LED_data);
     
     //
@@ -61,7 +61,7 @@ int main(void)
 				SysCtlDelay(10000000);
 				SysCtlDelay(10000000);
 
-        // Toggle the LED.
+        // Toggle the green LED.
         LED_data^=GREEN_MASK;	//toggle green LED (PF3)
 				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, LED_data);
     }
