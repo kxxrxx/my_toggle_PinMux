@@ -1,5 +1,5 @@
 //*****************************************************************************
-// in this example, we change the blinking LED from Red to Green. Also 
+// in this example, we changed the blinking LED from Red to Green. Also 
 // slowed down the blinking by a factor of 5
 //*****************************************************************************
 
