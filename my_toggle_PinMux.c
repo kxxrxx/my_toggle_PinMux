@@ -57,11 +57,11 @@ int main(void)
     while(1)
     {
         // Delay for a bit.
-				SysCtlDelay(10000000);
-				SysCtlDelay(10000000);
-				SysCtlDelay(10000000);
-	    			SysCtlDelay(10000000);
-	    			SysCtlDelay(10000000);
+				SysCtlDelay(2000000);
+				SysCtlDelay(2000000);
+				SysCtlDelay(2000000);
+	    			SysCtlDelay(2000000);
+	    			SysCtlDelay(2000000);
 
         // Toggle the green LED.
         LED_data^=GREEN_MASK;	//toggle green LED (PF3)
