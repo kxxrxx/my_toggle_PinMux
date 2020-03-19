@@ -65,6 +65,6 @@ int main(void)
 
         // Toggle the green LED.
         LED_data^=GREEN_MASK;	//toggle green LED (PF3)
-				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, LED_data);
+	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, LED_data);
     }
 }
